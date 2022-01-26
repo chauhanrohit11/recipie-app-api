@@ -22,10 +22,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Build the stack
-      run: docker-compose up -d
-    - name: Test
-      run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/  
-    - name: Install Dependencies
+      run: docker-compose up -d  
     - name: Run Tests
       run: |
          docker-compose run app sh -c "python manage.py test && flake8"
